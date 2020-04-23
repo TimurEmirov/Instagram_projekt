@@ -1,0 +1,14 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Instagram", '#', id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+        	<li><%= link_to 'home/help', class: 'login-button' do %>Go to App<% end %></li>
+        	<li><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
