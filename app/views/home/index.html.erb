@@ -1,6 +1,4 @@
-<% if current_user.nil? %>
-	<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
-<% else %>
-	<%= link_to 'home/help', class: 'login-button' do %>Go to App<% end %>
-	<%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %>
-<% end %>
+<div class="center jumbotron">
+  <h1>Welcome to the Instagram</h1>
+  <%= link_to "Login", new_user_session_path, class: "btn btn-lg btn-primary" %>
+</div>

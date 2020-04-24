@@ -4,7 +4,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    get home_index_url
+    get home_path
     sign_in users(:user_001)
     post user_session_url
 
@@ -13,12 +13,12 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get home_index_url
+    get home_path
     assert_response :success
   end
 
   test "should get help" do
-    get home_help_url
+    get help_path
     assert_response :success
   end
 
