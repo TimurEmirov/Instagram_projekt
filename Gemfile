@@ -9,6 +9,7 @@ gem 'devise'
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
 gem 'bootstrap-sass', '3.4.1'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

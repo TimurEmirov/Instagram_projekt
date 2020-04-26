@@ -307,6 +307,7 @@ DEPENDENCIES
   guard
   guard-minitest
   jbuilder (~> 2.7)
+  jquery-rails
   listen (>= 3.0.5, < 3.2)
   minitest
   minitest-reporters

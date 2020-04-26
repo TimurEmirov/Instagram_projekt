@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+
+  #get 'users/index'
   root to: 'home#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get '/home', to: 'home#index'
-  get '/help', to: 'home#help'
+  get '/home',      to: 'home#index'
+  get '/help',      to: 'home#help'
+  get '/user', to: 'users#show'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',

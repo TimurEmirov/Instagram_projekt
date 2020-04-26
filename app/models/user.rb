@@ -8,4 +8,10 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  has_one_attached :avatar
+
+  # Returns a resized image for display.
+  def display_avatar
+    avatar.variant(resize_to_limit: [300, 300])
+  end
 end
