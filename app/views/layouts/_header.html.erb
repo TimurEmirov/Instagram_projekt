@@ -5,7 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
-        	<li><%= link_to user_path, class: 'login-button' do %>Go to App<% end %></li>
+        	<li><%= link_to current_user, class: 'login-button' do %>Go to App<% end %></li>
         	<li><%= link_to destroy_user_session_path, method: :delete do %>Log out<% end %></li>
         <% end %>
       </ul>
