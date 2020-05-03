@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def display_avatar
     avatar.variant(resize_to_limit: [300, 300])
   end
+
+  def feed
+    Post.where("user_id = ?", id)
+  end
 end
