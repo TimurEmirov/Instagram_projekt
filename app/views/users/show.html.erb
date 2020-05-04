@@ -1,16 +1,16 @@
 <div>
-  <%= gravatar_for @user %>
+  <%= image_tag @user.avatar_profile if @user.avatar.attached? %>
   <%= @user.email %>
   <%= @user.name %>
   <%= @user.about %>
 </div>
 
-<div class="col-md-8">
+<h3>Posts (<%= @user.posts.count %>)</h3>
+<br>
+
+<div class="row">
   <% if @user.posts.any? %>
-    <h3>Posts (<%= @user.posts.count %>)</h3>
-    <ol class="posts">
-      <%= render @posts %>
-    </ol>
+    <%= render @posts %>
     <%= will_paginate @posts %>
   <% end %>
 </div>

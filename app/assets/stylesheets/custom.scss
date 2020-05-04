@@ -108,12 +108,19 @@ input {
 }
 
 /* posts */
-.posts {
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   list-style: none;
-  padding: 0;
-  li {
+  margin: 0 auto;
+  .post {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    margin: 5px;
+    padding: 50px 20px;
+    border-radius: 5px;
+    box-shadow: 15px 15px 10px rgba(0,0,0,0.3);
   }
   .user {
     margin-top: 5em;
@@ -132,21 +139,9 @@ input {
     display: block;
     margin-left: 60px;
   }
-  .gravatar {
+  .avatar {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
-  }
-}
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-span.image {
-  margin-top: 10px;
-  input {
-    border: 0;
   }
 }

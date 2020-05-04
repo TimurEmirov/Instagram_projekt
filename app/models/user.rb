@@ -14,7 +14,11 @@ class User < ApplicationRecord
 
   # Returns a resized image for display.
   def display_avatar
-    avatar.variant(resize_to_limit: [300, 300])
+    avatar.variant(resize_to_limit: [70, 70])
+  end
+
+  def avatar_profile
+    avatar.variant(resize_to_limit: [200, 200])
   end
 
   def feed

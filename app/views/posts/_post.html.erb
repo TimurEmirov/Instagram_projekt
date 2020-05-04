@@ -1,5 +1,7 @@
-<li id="post-<%= post.id %>">
-  <%= link_to gravatar_for(post.user, size: 50), post.user %>
+<div class="post" id="post-<%= post.id %>">
+  <%= image_tag post.display_image if post.image.attached? %>
+  <br>
+  <div class="avatar"><%= link_to image_tag post.user.display_avatar if post.user.avatar.attached? %></div>
   <span class="user"><%= link_to post.user.name, post.user %></span>
   <span class="content"><%= post.content %></span>
   <span class="timestamp">
@@ -9,4 +11,4 @@
                       data: { confirm: "You sure?" } %>
     <% end %>
   </span>
-</li>
+</div>
