@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :name, length: { maximum: 256 }
   has_one_attached :avatar
+  after_commit :add_default_avatar, on: [:create, :update]
 
   # Returns a resized image for display.
   def display_avatar
@@ -18,10 +19,17 @@ class User < ApplicationRecord
   end
 
   def avatar_profile
-    avatar.variant(resize_to_limit: [200, 200])
+    avatar.variant(resize_to_limit: [250, 250])
   end
+
 
   def feed
     Post.where("user_id = ?", id)
+  end
+end
+
+private def add_default_avatar
+  unless avatar.attached?
+    self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default")), filename: 'default' , content_type: "image/jpg")
   end
 end
