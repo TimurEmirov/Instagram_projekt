@@ -1,0 +1,16 @@
+<div class="post"  id="comment-<%= comment.id %>">
+  <div class="avatar"><%= link_to image_tag comment.user.display_avatar %></div>
+  <span class="user"><%= link_to comment.user.name, comment.user %></span>
+  <br>
+  <span class="content"><%= comment.content %></span>
+  <br>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(comment.created_at) %> ago.
+  </span>
+
+</div>
+<% if comment.user_id ==  current_user.id%>
+  <%= link_to 'Delete', [comment.post, comment],
+                 :method => :delete,
+                 data: { confirm: 'Are you sure?' } %>
+<% end %>

@@ -18,7 +18,10 @@ Rails.application.routes.draw do
   end
 
   resources :users,         only: [:show, :index]
-  resources :posts,         only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :posts do
+    resources :comments,            only: [:create, :destroy]
+  end
+  resources :posts,         only: [:create, :destroy, :show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

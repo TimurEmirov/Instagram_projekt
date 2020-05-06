@@ -1,0 +1,21 @@
+<div class="col-md-4">
+  <%= image_tag @post.image if @post.image.attached? %>
+  <div class="row">
+    <div class="col-md-8">
+      <section class="post_form">
+        <%= render 'shared/comment_form' %>
+      </section>
+    </div>
+  </div>
+
+
+  <div class="col-md-10">
+      <% if @post.comments.any? %>
+        <h3>Comments (<%= @post.comments.count %>)</h3>
+        <ol class="posts">
+          <%= render @comments %>
+        </ol>
+        <%= will_paginate @comments %>
+      <% end %>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
@@ -55,6 +56,6 @@ end
 
 private def add_default_avatar
   unless avatar.attached?
-    self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default")), filename: 'default' , content_type: "image/jpg")
+    self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
   end
 end

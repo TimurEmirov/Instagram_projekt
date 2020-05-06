@@ -1,7 +1,7 @@
 <div class="post" id="post-<%= post.id %>">
-  <%= image_tag post.display_image if post.image.attached? %>
+  <%= link_to (image_tag post.display_image if post.image.attached?), post %>
   <br>
-  <div class="avatar"><%= link_to image_tag post.user.display_avatar if post.user.avatar.attached? %></div>
+  <div class="avatar"><%= link_to image_tag post.user.display_avatar %></div>
   <span class="user"><%= link_to post.user.name, post.user %></span>
   <span class="content"><%= post.content %></span>
   <span class="timestamp">
