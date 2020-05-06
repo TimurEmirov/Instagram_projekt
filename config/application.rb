@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Postogramm
   class Application < Rails::Application
+    # Include the authenticity token in remote forms.
+    config.action_view.embed_authenticity_token_in_remote_forms = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
