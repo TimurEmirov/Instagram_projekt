@@ -23,5 +23,8 @@ Rails.application.routes.draw do
     resources :comments,            only: [:create, :destroy]
   end
   resources :posts,         only: [:create, :destroy, :show]
+  resources :posts do
+    resources :likeposts
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

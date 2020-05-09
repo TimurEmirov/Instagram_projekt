@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
+  has_many :likeposts, dependent: :destroy
   belongs_to :user
   has_one_attached :image
   default_scope -> { order(created_at: :desc) }
