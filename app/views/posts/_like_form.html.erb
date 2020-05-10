@@ -1,0 +1,9 @@
+  <div id="like_form-<%= @post.id %>">
+    <% pre_like = @post.likeposts.find { |likepost| likepost.user_id == current_user.id} %>
+    <% if pre_like %>
+      <%= render 'posts/unlike' %>
+    <% else %>
+      <%= render 'posts/like' %>
+
+    <% end %>
+  </div>

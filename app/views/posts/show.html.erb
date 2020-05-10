@@ -1,12 +1,10 @@
 <div class="col-md-4">
   <%= image_tag @post.image if @post.image.attached? %>
-  <p><%= @post.likeposts.count %> <%= (@post.likeposts.count) == 1 ? 'Like' : 'Likes'%></p>
-  <% pre_like = @post.likeposts.find { |likepost| likepost.user_id == current_user.id} %>
-  <% if pre_like %>
-    <%= button_to 'Unlike', post_likepost_path(@post, pre_like), method: :delete %>
-  <% else %>
-    <%= button_to 'Like', post_likeposts_path(@post), method: :post %>
-  <% end %>
+  <span class="content"><%= @post.content %></span>
+  <div id="likes-<%= @post.id %>">
+    <%= @post.likeposts.count %> <%= (@post.likeposts.count) == 1 ? 'Like' : 'Likes'%>
+  </div>
+  <%= render 'like_form' %>
   <div class="row">
     <div class="col-md-8">
       <section class="post_form">

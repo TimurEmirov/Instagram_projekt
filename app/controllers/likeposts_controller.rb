@@ -7,7 +7,10 @@ class LikepostsController < ApplicationController
       @post = Post.find(params[:post_id])
       @post.likeposts.create(user_id: current_user.id)
     end
-    redirect_to post_path(@post)
+    respond_to do |format|
+      format.html { redirect_to @post }
+      format.js
+    end
   end
 
   def destroy
@@ -18,7 +21,10 @@ class LikepostsController < ApplicationController
     @like = @post.likeposts.find(params[:id])
     @like.destroy
   end
-  redirect_to post_path(@post)
+  respond_to do |format|
+    format.html { redirect_to @post }
+    format.js
+  end
 end
 
   private

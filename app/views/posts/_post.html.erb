@@ -1,22 +1,17 @@
-<div class="post" id="post-<%= post.id %>">
-  <%= link_to (image_tag post.display_image if post.image.attached?), post %>
+<% @post = post %>
+<div class="post" id="post-<%= @post.id %>">
+  <%= link_to (image_tag @post.display_image if @post.image.attached?), @post %>
   <br>
-  <div class="avatar"><%= link_to image_tag post.user.display_avatar %></div>
-  <span class="user"><%= link_to post.user.name, post.user %></span>
-  <span class="content"><%= post.content %></span>
-  <p><%= post.likeposts.count %> <%= (post.likeposts.count) == 1 ? 'Like' : 'Likes'%></p>
-
-  <% pre_like = post.likeposts.find { |likepost| likepost.user_id == current_user.id} %>
-  <% if pre_like %>
-    <%= button_to 'Unlike', post_likepost_path(post, pre_like), method: :delete %>
-  <% else %>
-    <%= button_to 'Like', post_likeposts_path(post), method: :post %>
-  <% end %>
-
+  <div class="avatar"><%= link_to image_tag @post.user.display_avatar %></div>
+  <span class="user"><%= link_to @post.user.name, @post.user %></span>
+  <div id="likes-<%= @post.id %>">
+    <%= @post.likeposts.count %> <%= (@post.likeposts.count) == 1 ? 'Like' : 'Likes'%>
+  </div>
+  <%= render 'posts/like_form' %>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-    <% if post.user_id ==  current_user.id%>
-      <%= link_to "delete", post, method: :delete,
+    Posted <%= time_ago_in_words(@post.created_at) %> ago.
+    <% if @post.user_id ==  current_user.id%>
+      <%= link_to "delete", @post, method: :delete,
                       data: { confirm: "You sure?" } %>
     <% end %>
   </span>

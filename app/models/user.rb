@@ -37,8 +37,10 @@ class User < ApplicationRecord
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
-    Post.where("user_id IN (#{following_ids})
-                OR user_id = :user_id", user_id: id)
+
+    post_following_like_ids = " SELECT post_id FROM likeposts
+                              WHERE user_id IN (#{following_ids})"
+    Post.where("user_id IN (#{following_ids}) OR  id IN (#{post_following_like_ids})", user_id: id)
   end
 
   # Follows a user.
@@ -55,7 +57,8 @@ class User < ApplicationRecord
   end
 end
 
-private def add_default_avatar
+private
+def add_default_avatar
   unless avatar.attached?
     self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
   end
