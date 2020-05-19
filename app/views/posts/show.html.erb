@@ -1,5 +1,5 @@
 <div class="col-md-4">
-  <%= image_tag @post.image if @post.image.attached? %>
+  <%= image_tag @post.display_image_large if @post.image %>
   <span class="content"><%= @post.content %></span>
   <div id="likes-<%= @post.id %>">
     <%= @post.likeposts.count %> <%= (@post.likeposts.count) == 1 ? 'Like' : 'Likes'%>

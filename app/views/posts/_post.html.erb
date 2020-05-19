@@ -1,8 +1,8 @@
 <% @post = post %>
 <div class="post" id="post-<%= @post.id %>">
-  <%= link_to (image_tag @post.display_image if @post.image.attached?), @post %>
+  <%= link_to (image_tag @post.display_image_small if @post.image), @post %>
   <br>
-  <div class="avatar"><%= link_to image_tag @post.user.display_avatar %></div>
+  <div class="avatar"><%= link_to image_tag @post.user.display_avatar_small if @post.user.image %></div>
   <span class="user"><%= link_to @post.user.name, @post.user %></span>
   <div id="likes-<%= @post.id %>">
     <%= @post.likeposts.count %> <%= (@post.likeposts.count) == 1 ? 'Like' : 'Likes'%>

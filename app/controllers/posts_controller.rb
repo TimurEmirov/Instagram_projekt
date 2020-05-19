@@ -4,9 +4,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @post.image.attach(params[:post][:image])
     if @post.save
-      flash[:success] = "Post created!"
       redirect_to root_url
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
@@ -15,6 +13,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = current_user.posts.find(params[:id])
     @post.destroy
     flash[:success] = "Post deleted"
     redirect_to request.referrer || root_url

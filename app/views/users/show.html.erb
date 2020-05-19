@@ -1,5 +1,5 @@
-<div>
-  <%= image_tag @user.avatar_profile %>
+<div class="row">
+  <%= image_tag  @user.display_avatar_profile if @user.image %>
   <%= @user.email %>
   <%= @user.name %>
   <%= @user.about %>

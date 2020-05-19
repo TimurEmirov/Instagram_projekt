@@ -19,18 +19,20 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  validates :name, length: { maximum: 256 }
-  has_one_attached :avatar
-  after_commit :add_default_avatar, on: [:create, :update]
+  validates :name, length: { maximum: 256 }, presence: true
+
+  include ImageUploader::Attachment(:image) # adds an `image` virtual attribute
 
 
   # Returns a resized image for display.
-  def display_avatar
-    avatar.variant(resize_to_limit: [70, 70])
+  def display_avatar_profile
+    image_derivatives!
+    image_url(:medium)
   end
 
-  def avatar_profile
-    avatar.variant(resize_to_limit: [250, 250])
+  def display_avatar_small
+    image_derivatives!
+    image_url(:small)
   end
 
 
@@ -54,12 +56,5 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
-  end
-end
-
-private
-def add_default_avatar
-  unless avatar.attached?
-    self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
   end
 end

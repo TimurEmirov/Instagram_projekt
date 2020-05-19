@@ -43,9 +43,9 @@
         <%= f.text_area :about, autofocus: true, autocomplete: "about" %>
       </div>
 
-      <div class=”field”>
-        <%= f.file_field :avatar %>
-      </div>
+      <span class="image">
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+      </span>
 
       <div class="actions">
         <%= f.submit "Update", class: "btn btn-primary"%>
