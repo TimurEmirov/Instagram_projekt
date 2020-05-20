@@ -24,7 +24,6 @@ RSpec.describe PostsController, type: :controller do
         post: attributes_for(:post, :with_valid_image)
       }
     end
-
     subject{ post :create, params: params }
     it 'create post' do
       expect { subject }.to change { Post.count }.by(1)
@@ -33,17 +32,13 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe '#destroy' do
-
     let!(:post){ create :post, user: user }
     let(:params){ { id: post, user_id: user } }
-
     subject{ process :destroy, method: :delete, params: params }
-
     it 'destroy post' do
       expect { subject }.to change { Post.count }.by(-1)
       is_expected.to redirect_to(request.referrer || root_url)
     end
-
     context "when user tries delete someone else post" do
       let!(:post) { create :post }
       it { expect { subject }.to change { Post.count }.by(0)  }

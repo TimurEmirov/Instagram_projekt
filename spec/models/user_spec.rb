@@ -15,6 +15,17 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_presence_of(:name) }
 
+  it "should follow and unfollow a user" do
+    michael = create(:user)
+    archer = create(:user)
+    expect(michael.following?(archer)).to be_falsey
+    michael.follow(archer)
+    expect(michael.following?(archer)).to be_truthy
+    expect(archer.followers.include?(michael)).to be_truthy
+    michael.unfollow(archer)
+    expect(michael.following?(archer)).to be_falsey
+  end
+
   context 'validates image format' do
     it 'allows to set png file as an avatar' do
       user = create(:user)
