@@ -16,4 +16,6 @@ class Post < ApplicationRecord
     image_derivatives!
     image_url(:large)
   end
+
+  
 end

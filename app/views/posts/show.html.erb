@@ -15,12 +15,12 @@
 
 
   <div class="col-md-10">
-      <% if @post.comments.any? %>
-        <h3>Comments (<%= @post.comments.count %>)</h3>
-        <ol class="posts">
-          <%= render @comments %>
-        </ol>
-        <%= will_paginate @comments %>
-      <% end %>
-    </div>
+    <% if @post.comments.any? %>
+      <h3>Comments (<%= @post.comments.count %>)</h3>
+      <ol class="posts">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    <% end %>
+  </div>
 </div>

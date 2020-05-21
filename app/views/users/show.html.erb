@@ -1,14 +1,22 @@
 <div class="row">
-  <%= image_tag  @user.display_avatar_profile if @user.image %>
-  <%= @user.email %>
-  <%= @user.name %>
-  <%= @user.about %>
+  <div class="col-md-8">
+    <%= image_tag  @user.display_avatar_profile if @user.image %>
+    <%= @user.email %>
+    <%= @user.name %>
+    <%= @user.about %>
+  </div>
 </div>
+<div class="row">
 
+    <%= render 'shared/post_form' %>
+
+</div>
 <section class="stats">
   <%= render 'shared/stats' %>
 </section>
 <%= render 'follow_form' if current_user %>
+
+
 
 <h3>Posts (<%= @user.posts.count %>)</h3>
 <br>

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to root_url
+      redirect_to @post
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'home/index'

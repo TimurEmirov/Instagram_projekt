@@ -11,18 +11,19 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get '/home',      to: 'home#index'
   get '/help',      to: 'home#help'
+
   resources :users do
     member do
-    get :following, :followers
+      get :following, :followers
     end
   end
 
   resources :users,         only: [:show, :index]
   resources :relationships, only: [:create, :destroy]
   resources :posts do
-    resources :comments,            only: [:create, :destroy]
+    resources :comments,    only: [:create, :destroy]
   end
-  resources :posts,         only: [:create, :destroy, :show]
+  #resources :posts,         only: [:create, :destroy]
   resources :posts do
     resources :likeposts
   end
