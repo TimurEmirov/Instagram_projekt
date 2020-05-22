@@ -58,4 +58,7 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def like_it?(who_like_it)
+    who_like_it.map{ |user| following.include?(user)}
+  end
 end

@@ -17,5 +17,5 @@ class Post < ApplicationRecord
     image_url(:large)
   end
 
-  
+
 end
