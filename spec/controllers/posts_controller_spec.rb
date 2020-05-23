@@ -21,7 +21,7 @@ RSpec.describe PostsController, type: :controller do
   describe '#create' do
     let(:params) do
       {
-        post: attributes_for(:post, :with_valid_image)
+        post: attributes_for(:post)
       }
     end
     subject{ post :create, params: params }

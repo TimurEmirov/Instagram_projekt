@@ -8,12 +8,12 @@ RSpec.describe Post, type: :model do
   it { is_expected.to have_many(:likeposts) }
 
   it { is_expected.to validate_length_of(:content).is_at_most(512) }
-  #it { is_expected.to validate_presence_of(:image) }
+  it { is_expected.to validate_presence_of(:image) }
 
   context 'validates image format' do
     it 'allows to set png file as an image' do
       user = create(:user)
-      subject.attributes = attributes_for(:post, :with_valid_image)
+      subject.attributes = attributes_for(:post)
       subject.user = user
       is_expected.to be_valid
     end

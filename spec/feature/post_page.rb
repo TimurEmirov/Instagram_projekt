@@ -9,11 +9,12 @@ RSpec.describe 'Post page', :js, type: :feature do
 
     within '.post_form' do
       fill_in 'post[content]', with: "Some thing"
-
+      attach_file('post[image]', Rails.root.join('spec/fixtures/pixel.png'))
       click_button 'Post'
     end
 
     expect(page).to have_content("Some thing")
+    expect(page).to have_content("Post created")
 
   end
 end
