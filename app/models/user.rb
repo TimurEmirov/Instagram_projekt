@@ -59,16 +59,7 @@ class User < ApplicationRecord
 
   private
     def resize_avatar
-      # unless self.image
-      #   image { Rack::Test::UploadedFile.new(Rails.root.join("app", "assets", "images", "default.png"))}
-        #self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
-        image_derivatives!
-      # end
+      image_derivatives!
     end
 
 end
-
-# private def add_default_avatar
-# unless avatar.attached?
-# self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
-# end
