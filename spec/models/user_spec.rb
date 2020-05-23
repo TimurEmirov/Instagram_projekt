@@ -32,9 +32,5 @@ RSpec.describe User, type: :model do
       is_expected.to be_valid
     end
 
-    # it 'not allows to set txt file as an avatar' do
-    #   user = create(:user, :with_invalid_avatar)
-    #   is_expected.to be_invalid
-    # end
   end
 end

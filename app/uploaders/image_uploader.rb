@@ -1,5 +1,7 @@
 class ImageUploader < Shrine
   plugin :derivatives
+  plugin :default_url
+  plugin :validation_helpers
   require "image_processing/mini_magick"
   Attacher.derivatives_processor do |original|
     processor = ImageProcessing::MiniMagick.source(original)
@@ -10,4 +12,13 @@ class ImageUploader < Shrine
       small:  processor.resize_to_limit!(70, 70),
     }
   end
+
+  Attacher.validate do
+    validate_extension %w[jpg jpeg png web]
+  end
+
+  Attacher.default_url do |**options|
+    "/app/assets/images/placeholder.jpg"
+  end
+
 end

@@ -22,16 +22,15 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 256 }, presence: true
 
   include ImageUploader::Attachment(:image) # adds an `image` virtual attribute
-
+  validates :image, presence: true
+  after_commit :resize_avatar, on: [:create, :update]
 
   # Returns a resized image for display.
   def display_avatar_profile
-    image_derivatives!
     image_url(:medium)
   end
 
   def display_avatar_small
-    image_derivatives!
     image_url(:small)
   end
 
@@ -58,7 +57,18 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  def like_it?(who_like_it)
-    who_like_it.map{ |user| following.include?(user)}
-  end
+  private
+    def resize_avatar
+      # unless self.image
+      #   image { Rack::Test::UploadedFile.new(Rails.root.join("app", "assets", "images", "default.png"))}
+        #self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
+        image_derivatives!
+      # end
+    end
+
 end
+
+# private def add_default_avatar
+# unless avatar.attached?
+# self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "default.png")), filename: 'default.png' , content_type: "image/png")
+# end

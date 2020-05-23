@@ -27,7 +27,7 @@ RSpec.describe PostsController, type: :controller do
     subject{ post :create, params: params }
     it 'create post' do
       expect { subject }.to change { Post.count }.by(1)
-      is_expected.to redirect_to(root_url)
+      is_expected.to redirect_to(post_path(assigns(:post)))
     end
   end
 

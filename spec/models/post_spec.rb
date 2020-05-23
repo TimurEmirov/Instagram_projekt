@@ -18,12 +18,12 @@ RSpec.describe Post, type: :model do
       is_expected.to be_valid
     end
 
-    # it 'not allows to set txt file as an image' do
-    #   user = create(:user)
-    #   subject.attributes = attributes_for(:post, :with_invalid_image)
-    #   subject.user = user
-    #   is_expected.to be_invalid
-    # end
+    it 'not allows to set txt file as an image' do
+      user = create(:user)
+      subject.attributes = attributes_for(:post, :with_invalid_image)
+      subject.user = user
+      is_expected.to be_invalid
+    end
   end
 
 end

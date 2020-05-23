@@ -2,12 +2,12 @@
 <div class="post" id="post-<%= @post.id %>">
   <% if current_user.following?(@post.user) %>
     <p> User you follow post it </p>
-  <% elsif (@post.likeposts.pluck(:user_id)&current_user.following.pluck(:id)).first %>
+  <% elsif (@post.likeposts.pluck(:user_id).any?{ |liker| current_user.following.pluck(:id).include?(liker) }) %>
     <p> User you follow like it </p>
   <% end %>
-  <%= link_to (image_tag @post.display_image_small if @post.image), @post %>
+  <%= link_to (image_tag @post.display_image_small ), @post %>
   <br>
-  <div class="avatar"><%= link_to image_tag @post.user.display_avatar_small if @post.user.image %></div>
+  <div class="avatar"><%= link_to (image_tag @post.user.display_avatar_small), @post.user %></div>
   <span class="user"><%= link_to @post.user.name, @post.user %></span>
   <div id="likes-<%= @post.id %>">
     <%= @post.likeposts.count %> <%= (@post.likeposts.count) == 1 ? 'Like' : 'Likes'%>
