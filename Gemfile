@@ -14,7 +14,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'jquery-rails'
 gem 'active_storage_validations'
-gem "shrine", "~> 3.0"
+gem "shrine", "~> 3.3"
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
